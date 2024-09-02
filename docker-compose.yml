@@ -1,0 +1,13 @@
+version: '3.8'  # Specify the version of Docker Compose
+
+services:
+  sveltekit:
+    image: node:18-alpine  # Use the Node.js image
+    working_dir: /app
+    ports:
+      - "5173:5173"  # Map port 5173 on the host to 5173 in the container
+    volumes:
+      - .:/app  # Mount the current directory to /app in the container
+    command: >
+      sh -c "rm -rf node_modules package-lock.json && npm install && npm run dev -- --host --open"
+
